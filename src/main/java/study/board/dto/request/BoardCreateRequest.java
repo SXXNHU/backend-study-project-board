@@ -1,4 +1,4 @@
-package study.board.dto;
+package study.board.dto.request;
 
 public record BoardCreateRequest (
     String title,
