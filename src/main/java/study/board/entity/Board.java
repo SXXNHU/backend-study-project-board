@@ -1,24 +1,35 @@
 package study.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+@Getter
 @Entity
-@NoArgsConstructor
-@Getter @Setter
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Board {
 
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
+
+    @Lob
+    @Column(nullable = false)
     private String content;
 
-    public Board(String title, String content) {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "author_id", nullable = false)
+    private User author;
+
+    public Board(String title, String content, User author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
