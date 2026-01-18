@@ -1,4 +1,4 @@
-package study.board.global.security;
+package study.board.global.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import study.board.global.security.JwtAuthenticationFilter;
+import study.board.global.security.JwtProvider;
 import study.board.repository.UserRepository;
 
 @Configuration
